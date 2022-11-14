@@ -35,8 +35,8 @@
             this.dgvColumna3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvColumna4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnValidarDatos = new System.Windows.Forms.Button();
-            this.lblMozoDelDia = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnMozoDelDia = new System.Windows.Forms.Button();
+            this.btnTotales = new System.Windows.Forms.Button();
             this.mrcConsultas = new System.Windows.Forms.GroupBox();
             this.lblTotales = new System.Windows.Forms.Label();
             this.lblMozoDia = new System.Windows.Forms.Label();
@@ -108,31 +108,31 @@
             this.btnValidarDatos.UseVisualStyleBackColor = true;
             this.btnValidarDatos.Click += new System.EventHandler(this.btnValidarDatos_Click);
             // 
-            // lblMozoDelDia
+            // btnMozoDelDia
             // 
-            this.lblMozoDelDia.Location = new System.Drawing.Point(15, 35);
-            this.lblMozoDelDia.Name = "lblMozoDelDia";
-            this.lblMozoDelDia.Size = new System.Drawing.Size(109, 23);
-            this.lblMozoDelDia.TabIndex = 2;
-            this.lblMozoDelDia.Text = "Mozo del Dia";
-            this.lblMozoDelDia.UseVisualStyleBackColor = true;
-            this.lblMozoDelDia.Click += new System.EventHandler(this.lblMozoDelDia_Click);
+            this.btnMozoDelDia.Location = new System.Drawing.Point(15, 35);
+            this.btnMozoDelDia.Name = "btnMozoDelDia";
+            this.btnMozoDelDia.Size = new System.Drawing.Size(109, 23);
+            this.btnMozoDelDia.TabIndex = 2;
+            this.btnMozoDelDia.Text = "Mozo del Dia";
+            this.btnMozoDelDia.UseVisualStyleBackColor = true;
+            this.btnMozoDelDia.Click += new System.EventHandler(this.btnMozoDelDia_Click);
             // 
-            // button3
+            // btnTotales
             // 
-            this.button3.Location = new System.Drawing.Point(15, 106);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(109, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Totales";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnTotales.Location = new System.Drawing.Point(15, 106);
+            this.btnTotales.Name = "btnTotales";
+            this.btnTotales.Size = new System.Drawing.Size(109, 23);
+            this.btnTotales.TabIndex = 3;
+            this.btnTotales.Text = "Totales";
+            this.btnTotales.UseVisualStyleBackColor = true;
             // 
             // mrcConsultas
             // 
             this.mrcConsultas.Controls.Add(this.lblTotales);
             this.mrcConsultas.Controls.Add(this.lblMozoDia);
-            this.mrcConsultas.Controls.Add(this.lblMozoDelDia);
-            this.mrcConsultas.Controls.Add(this.button3);
+            this.mrcConsultas.Controls.Add(this.btnMozoDelDia);
+            this.mrcConsultas.Controls.Add(this.btnTotales);
             this.mrcConsultas.Location = new System.Drawing.Point(12, 277);
             this.mrcConsultas.Name = "mrcConsultas";
             this.mrcConsultas.Size = new System.Drawing.Size(551, 148);
@@ -190,8 +190,8 @@
 
         private System.Windows.Forms.DataGridView dgvImportes;
         private System.Windows.Forms.Button btnValidarDatos;
-        private System.Windows.Forms.Button lblMozoDelDia;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnMozoDelDia;
+        private System.Windows.Forms.Button btnTotales;
         private System.Windows.Forms.GroupBox mrcConsultas;
         private System.Windows.Forms.Label lblTotales;
         private System.Windows.Forms.Label lblMozoDia;
