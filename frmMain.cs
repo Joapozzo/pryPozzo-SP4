@@ -12,10 +12,24 @@ namespace pryPozzo_SP4
 {
     public partial class Menu : Form
     {
+        float[,] matA = new float[5, 5];
         int e = 0;
         int i = 0;
         int f = 0;
         int c = 0;
+        public void CompletarMatriz()
+        {
+            for (int f = 0; f < matA.GetLength(0) ; f++)
+            {
+                for (int c = 0; c < matA.GetLength(1) -1 ; c++)
+                {
+                    matA[f, c] = Convert.ToSingle(dgvImportes.Rows[f].Cells[c + 1].Value);
+                }
+            }
+        }
+
+
+
         public Menu()
         {
             InitializeComponent();
@@ -37,31 +51,61 @@ namespace pryPozzo_SP4
 
         private void btnValidarDatos_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i <= 4; i++)
+            bool validado = true;
+            for (int c = 1; c < dgvImportes.ColumnCount; c++)
             {
-                if (dgvImportes.Rows[i].Cells[1].Value == null && dgvImportes.Rows[i].Cells[2].Value == null && dgvImportes.Rows[i].Cells[3].Value == null &&
-                    dgvImportes.Rows[i].Cells[4].Value == null)
+                for (int f = 0; f < dgvImportes.RowCount; f++)
                 {
-                    MessageBox.Show("Ingrese datos en todos los campos", "Error", MessageBoxButtons.OK);
-                    return;
+                    if (dgvImportes.Rows[f].Cells[c].Value == null)
+                    {
+                        validado = false;
+                        MessageBox.Show("Ingresa bien las cosas pelotudo");
+                    }
+                }
+            }
+            if (validado == true)
+            {
+                CompletarMatriz();
+                MessageBox.Show("Los datos fueron ingresados");
+                for (int f = 0; f < matA.GetLength(0); f++)
+                {
+                    for (int c = 0; c < matA.GetLength(1) - 1; c++)
+                    {
+                        matA[f, 4] = matA[f, c] + matA[f, 4];
+                    }
                 }
             }
 
         }
+
 
         private void btnMozoDelDia_Click(object sender, EventArgs e)
         {
-            int[] vecA = new int[4];
-            i = 0;
-            while (i <= 4)
+            float varTotal = matA[f, c];
+            int indice = 0;
+            for (int f = 0; f < matA.GetLength(0); f++)
             {
-                vecA[i] = dgvImportes.Rows[i].Cells[1].ColumnIndex + dgvImportes.Rows[i].Cells[2].ColumnIndex + dgvImportes.Rows[i].Cells[3].ColumnIndex + dgvImportes.Rows[i].Cells[4].ColumnIndex;
-                if (vecA[i] > vecA[i + 1])
+                if (varTotal < matA[f, 4])
                 {
-                    lblMozoDia.Text = "Total vendido del mozo:  " + vecA[i];
+                    varTotal = matA[f, 4];
+                    indice = f;
                 }
-                i++;
             }
+            if (indice == 0)
+            {
+                txtMozodelDia.Text = "Julio";
+            }
+        }
+
+        private void btnTotales_Click(object sender, EventArgs e)
+        {
+            lisTotales.Items.Clear();
+            lisTotales.Items.Add("Julio " + matA[0, 4].ToString());
+            lisTotales.Items.Add("Esteban " + matA[1, 4].ToString());
+            lisTotales.Items.Add("Javier " + matA[2, 4].ToString());
+            lisTotales.Items.Add("Gonzalo " + matA[3, 4].ToString());
+            lisTotales.Items.Add("Alberto " + matA[4, 4].ToString());
         }
     }
 }
+
