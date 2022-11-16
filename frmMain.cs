@@ -36,7 +36,6 @@ namespace pryPozzo_SP4
         }
         private void Menu_Load(object sender, EventArgs e)
         {
-
             for (int i = 0; i <= 4; i++)
             {
                 dgvImportes.Rows.Add(i.ToString());
@@ -47,10 +46,21 @@ namespace pryPozzo_SP4
             dgvImportes.Rows[3].Cells[0].Value = "Gonzalo";
             dgvImportes.Rows[4].Cells[0].Value = "Alberto";
             dgvImportes.Columns[0].ReadOnly = true;
+
+            for (int f = 0; f < 5; f++)
+            {
+                for (int c = 1; c < 5; c++)
+                {
+                    dgvImportes.Rows[f].Cells[c].Value = 0;
+                }
+            }
+
         }
 
         private void btnValidarDatos_Click(object sender, EventArgs e)
         {
+            lisTotales.Items.Clear();
+            txtMozodelDia.Clear();
             bool validado = true;
             for (int c = 1; c < dgvImportes.ColumnCount; c++)
             {
@@ -59,14 +69,14 @@ namespace pryPozzo_SP4
                     if (dgvImportes.Rows[f].Cells[c].Value == null)
                     {
                         validado = false;
-                        MessageBox.Show("Ingresa bien las cosas pelotudo");
+                        MessageBox.Show("Ingrese digitos en todas las celdas porfavor", "Error", MessageBoxButtons.OK);
                     }
                 }
             }
             if (validado == true)
             {
                 CompletarMatriz();
-                MessageBox.Show("Los datos fueron ingresados");
+                MessageBox.Show("Los datos fueron ingresados correctamente" , "Ingreso Correcto" , MessageBoxButtons.OK);
                 for (int f = 0; f < matA.GetLength(0); f++)
                 {
                     for (int c = 0; c < matA.GetLength(1) - 1; c++)
@@ -74,6 +84,8 @@ namespace pryPozzo_SP4
                         matA[f, 4] = matA[f, c] + matA[f, 4];
                     }
                 }
+                btnMozoDelDia.Enabled = true;
+                btnTotales.Enabled = true;
             }
 
         }
@@ -81,7 +93,7 @@ namespace pryPozzo_SP4
 
         private void btnMozoDelDia_Click(object sender, EventArgs e)
         {
-            float varTotal = matA[f, c];
+            float varTotal = matA[0, 4];
             int indice = 0;
             for (int f = 0; f < matA.GetLength(0); f++)
             {
@@ -93,18 +105,46 @@ namespace pryPozzo_SP4
             }
             if (indice == 0)
             {
-                txtMozodelDia.Text = "Julio";
+                txtMozodelDia.Text = ("Julio");
+            }
+            if (indice == 1)
+            {
+                txtMozodelDia.Text = ("Esteban");
+            }
+            if (indice == 2)
+            {
+                txtMozodelDia.Text = ("Javier");
+            }
+            if (indice == 3)
+            {
+                txtMozodelDia.Text = ("Gonzalo");
+            }
+            if (indice == 4)
+            {
+                txtMozodelDia.Text = ("Alberto");
             }
         }
 
         private void btnTotales_Click(object sender, EventArgs e)
         {
             lisTotales.Items.Clear();
-            lisTotales.Items.Add("Julio " + matA[0, 4].ToString());
-            lisTotales.Items.Add("Esteban " + matA[1, 4].ToString());
-            lisTotales.Items.Add("Javier " + matA[2, 4].ToString());
-            lisTotales.Items.Add("Gonzalo " + matA[3, 4].ToString());
-            lisTotales.Items.Add("Alberto " + matA[4, 4].ToString());
+            lisTotales.Items.Add("Julio vendio $ " + matA[0, 4].ToString());
+            lisTotales.Items.Add("Esteban vendio $ " + matA[1, 4].ToString());
+            lisTotales.Items.Add("Javier vendio $ " + matA[2, 4].ToString());
+            lisTotales.Items.Add("Gonzalo vendio $ " + matA[3, 4].ToString());
+            lisTotales.Items.Add("Alberto vendio $ " + matA[4, 4].ToString());
+            for (int f = 0; f < 5; f++)
+            {
+                for (int c = 0; c < 4; c++)
+                {
+                    dgvImportes.Rows[f].Cells[c + 1].Value = 0 ;
+                }
+            }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
