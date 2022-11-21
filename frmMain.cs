@@ -12,14 +12,12 @@ namespace pryPozzo_SP4
 {
     public partial class Menu : Form
     {
-        float[,] matA = new float[5, 5];
-        int e = 0;
-        int i = 0;
+        float[,] matA = new float[6, 5];
         int f = 0;
         int c = 0;
         public void CompletarMatriz()
         {
-            for (int f = 0; f < matA.GetLength(0) ; f++)
+            for (int f = 0; f < matA.GetLength(0) -1 ; f++)
             {
                 for (int c = 0; c < matA.GetLength(1) -1 ; c++)
                 {
@@ -59,6 +57,7 @@ namespace pryPozzo_SP4
 
         private void btnValidarDatos_Click(object sender, EventArgs e)
         {
+            lisTotalesCategorias.Items.Clear();
             lisTotales.Items.Clear();
             txtMozodelDia.Clear();
             bool validado = true;
@@ -76,8 +75,8 @@ namespace pryPozzo_SP4
             if (validado == true)
             {
                 CompletarMatriz();
-                MessageBox.Show("Los datos fueron ingresados correctamente" , "Ingreso Correcto" , MessageBoxButtons.OK);
-                for (int f = 0; f < matA.GetLength(0); f++)
+                MessageBox.Show("Los datos fueron ingresados correctamente", "Ingreso Correcto", MessageBoxButtons.OK);
+                for (int f = 0; f < matA.GetLength(0) - 1; f++)
                 {
                     for (int c = 0; c < matA.GetLength(1) - 1; c++)
                     {
@@ -86,6 +85,14 @@ namespace pryPozzo_SP4
                 }
                 btnMozoDelDia.Enabled = true;
                 btnTotales.Enabled = true;
+
+                for (int c = 0; c < matA.GetLength(1) - 1; c++)
+                {
+                    for (int f = 0; f < matA.GetLength(0) - 1; f++)
+                    {
+                        matA[5 , c] = matA[f, c] + matA[5, c];
+                    }
+                }
             }
 
         }
@@ -137,9 +144,14 @@ namespace pryPozzo_SP4
             {
                 for (int c = 0; c < 4; c++)
                 {
-                    dgvImportes.Rows[f].Cells[c + 1].Value = 0 ;
+                    dgvImportes.Rows[f].Cells[c + 1].Value = 0;
                 }
             }
+            lisTotalesCategorias.Items.Clear();
+            lisTotalesCategorias.Items.Add("Venta total de Comidas $ " + matA[5, 1].ToString());
+            lisTotalesCategorias.Items.Add("Venta total de Bebidas sin alcohol $ " + matA[5, 2].ToString());
+            lisTotalesCategorias.Items.Add("Venta total de Bebidas con alcohol $ " + matA[5, 3].ToString());
+            lisTotalesCategorias.Items.Add("Venta total de Postres $ " + matA[5, 4].ToString());
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
